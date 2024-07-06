@@ -1,7 +1,10 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
+const mongoose = require('mongoose')
 const app = express()
+require('dotenv').config();
+const Phonebook = require('./models/phonebook')
 
 let persons = [
   { 
@@ -31,12 +34,28 @@ app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.static('dist'))
 
+
+
+// mongoose.set('strictQuery',false)
+// const url = process.env.MONGODB_URL;
+
+// mongoose.connect(url)
+
+// const phonebookSchema = new mongoose.Schema({
+//   name: String,
+//   number: String,
+// })
+
+// const Phonebook = mongoose.model('Phonebook', phonebookSchema)
+
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
 app.get('/api/persons', (request, response) => {
-  response.json(persons)
+  Phonebook.find({}).then(persons => {
+    response.json(persons)
+  })
 })
 
 const generateId = () => {
@@ -88,6 +107,7 @@ app.post('/api/persons', (request, response) => {
   persons = persons.concat(person);
 
   response.json(person);
+  
 })
 
 const unknownEndpoint = (request, response) => {
@@ -96,7 +116,7 @@ const unknownEndpoint = (request, response) => {
 
 app.use(unknownEndpoint)
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
