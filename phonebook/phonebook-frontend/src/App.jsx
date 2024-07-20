@@ -168,6 +168,8 @@ const App = () => {
         setTimeout(() => {
           setErrorMessage(null)
         }, 5000)
+        setNewName('')
+        setNewNumber('')
       })
   }
 
