@@ -121,7 +121,7 @@ const App = () => {
       } else {
         setErrorNotification(true);
         setErrorMessage(
-          `${newName} already found`
+          `${newName} was not updated`
         )
         setTimeout(() => {
           setErrorMessage(null)
@@ -144,6 +144,12 @@ const App = () => {
           setErrorMessage(
             `${newName} added`
           )
+          .catch(error => {
+            setErrorNotification(true);
+            setErrorMessage(
+              `${error.response.data.error}`
+            )
+          })
           setTimeout(() => {
             setErrorMessage(null)
           }, 5000)
