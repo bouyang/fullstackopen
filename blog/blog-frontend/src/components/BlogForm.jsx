@@ -28,6 +28,7 @@ const BlogForm = ({ createBlog }) => {
               value={blogTitle}
               onChange={event => setBlogTitle(event.target.value)}
               placeholder='write blog title here'
+              id='blogTitleInput'
             />
           </div>
           <div>
