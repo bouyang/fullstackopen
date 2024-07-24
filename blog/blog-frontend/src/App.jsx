@@ -194,6 +194,7 @@ const App = () => {
           
         </div>
       }
+      <footer>Blog app</footer>
     </div>
   )
 }
