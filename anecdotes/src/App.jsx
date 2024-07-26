@@ -4,7 +4,7 @@ import {
   Routes, Route, Link, useParams, useMatch, useNavigate
 } from 'react-router-dom'
 import  { useField } from './hooks'
-import { Table, Form, Button, Alert } from 'react-bootstrap'
+import { Table, Form, Button, Alert, Navbar } from 'react-bootstrap'
 
 const Menu = () => {
   const padding = {
